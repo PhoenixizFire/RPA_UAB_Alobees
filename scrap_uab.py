@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 from dotenv import load_dotenv
+import datetime
 import time
 import os
 from os.path import join,dirname
@@ -91,11 +92,24 @@ def procedure(driver):
     driver.get(uab_second_dest)
     time.sleep(5)
 
+    # Définition des dates de début et de fin
+    use_custom_dates = os.environ.get("USE_CUSTOM_DATES")
+    # Si on utilise les dates personnalisés du fichier "settings.env"
+    if eval(use_custom_dates)==True:
+        start_date = os.environ.get("START_DATE_UAB")
+        end_date = os.environ.get("END_DATE_UAB")
+    # ou si on utilise le système préconfiguré défini à j-1 et j
+    else:
+        today = datetime.date.today()
+        yesterday = today - datetime.timedelta(days=1)
+        start_date = yesterday.strftime("%d/%m/%Y")
+        end_date = today.strftime("%d/%m/%Y")
+
     # Saisie de la date de début de période
     champDebut = driver.find_elements(By.XPATH,"//input[contains(@name,'ReportUsageDetailByArea_p0DiscreteValue')]")
     if len(champDebut)==1:
         champDebut[0].clear()
-        champDebut[0].send_keys("01/06/2024")
+        champDebut[0].send_keys(start_date)
     else:
         print("len(champDebut) : "+str(len(champDebut)))
 
@@ -103,7 +117,7 @@ def procedure(driver):
     champFin = driver.find_elements(By.XPATH,"//input[contains(@name,'ReportUsageDetailByArea_p1DiscreteValue')]")
     if len(champFin)==1:
         champFin[0].clear()
-        champFin[0].send_keys("30/06/2024")
+        champFin[0].send_keys(end_date)
     else:
         print("len(champFin) : "+str(len(champFin)))
 

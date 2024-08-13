@@ -1,6 +1,6 @@
 <h1>Robot Export UAB/Alobees</h1>
 <i>Notice d'utilisation pour JMA</i>
-<a href="https://github.com/PhoenixizFire/RPA_UAB_Alobees">Lien du repository Github</a>
+<span><a href="https://github.com/PhoenixizFire/RPA_UAB_Alobees">Lien du repository Github</a></span>
 
 <br>
 <h4><b>Ce que fait le robot :</b></h4>
@@ -17,6 +17,7 @@
 - Librairies python (versions utilisées lors du développement) :
     - dotenv (par défaut)
     - time (par défaut)
+    - datetime (par défaut)
     - os (par défaut)
     - Selenium (4.11.2)
     - webdriver-manager (4.0.0)
@@ -24,6 +25,7 @@
 <h4><b>Comment fonctionne le robot :</b></h4>
 
 - Les paramètres du robot sont définis dans le fichier <a href="settings.env">settings.env</a>
+- Pour ouvrir le fichier <a href="settings.env">settings.env</a>, simplement l'ouvrir avec <u>Bloc-notes</u>
 - Le reste des actions est automatique, voici comment les scripts fonctionnent :
 
 <h4><b><u>Script UAB</u></b></h4>
@@ -51,8 +53,8 @@
 
 <h4><b>Pour démarrer le robot :</b></h4>
 
-- Double-clic sur <a href="start.bat">start.bat</a>
-- Sinon, Shift + clic droit dans la fenêtre du dossier => Ouvrir avec Powershell :
+- <u>Double-clic</u> sur <a href="start.bat">start.bat</a>
+- Sinon, <u>Shift + clic droit</u> dans la fenêtre du dossier => Ouvrir avec Powershell :
     - Saisir `python main.py` puis valider
 
 `*` Le fichier Excel généré sera ajouté au répertoire enregistré dans le fichier <a href="settings.env">settings.env</a> à la valeur `DOWNLOAD_FOLDER`

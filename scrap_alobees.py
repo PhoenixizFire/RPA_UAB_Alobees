@@ -9,6 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from dotenv import load_dotenv
 import time
+import datetime
 import os
 from os.path import join,dirname
 
@@ -93,14 +94,27 @@ def procedure(driver):
     else:
         print("len(boutonExport) : "+str(len(boutonExport)))
 
+    # Définition des dates de début et de fin
+    use_custom_dates = os.environ.get("USE_CUSTOM_DATES")
+    # Si on utilise les dates personnalisés du fichier "settings.env"
+    if eval(use_custom_dates)==True:
+        start_date = os.environ.get("START_DATE_ALOBEES")
+        end_date = os.environ.get("END_DATE_ALOBEES")
+    # ou si on utilise le système préconfiguré défini à j-1 et j
+    else:
+        today = datetime.date.today()
+        yesterday = today - datetime.timedelta(days=1)
+        start_date = yesterday.strftime("%d/%m/%Y")
+        end_date = today.strftime("%d/%m/%Y")
+
     # Saisie des dates de début et de fin
     champFin = driver.find_elements(By.XPATH,"//input[contains(@placeholder,'--/--/----')]")
     if len(champFin)==2:
         champFin[0].clear()
-        champFin[0].send_keys("01/06/2024")
+        champFin[0].send_keys(start_date)
         
         champFin[1].clear()
-        champFin[1].send_keys("30/06/2024")
+        champFin[1].send_keys(end_date)
     else:
         print("len(champFin) : "+str(len(champFin)))
     

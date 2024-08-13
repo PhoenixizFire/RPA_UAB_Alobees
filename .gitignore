@@ -1,0 +1,14 @@
+# ignore ALL .ipynb, files
+*.ipynb
+*.tmp
+*.mp4
+
+# ignore "settings.env" file
+settings.env
+
+# ignore potential temporary Microsoft files starting with ~$
+~$*
+
+# ignore ALL files in __pycache__ and .git folder
+__pycache__/
+.git/
